@@ -22,9 +22,10 @@
 
 ![overview](docs/overview.png)
 
-
 ## Data Preprocess
+
 we follow the CLAM's WSI processing solution (https://github.com/mahmoodlab/CLAM)
+
 ```bash
 # WSI Segmentation and Patching
 python create_patches_fp.py --source DATA_DIRECTORY --save_dir RESULTS_DIRECTORY --patch_size 256 --preset bwh_biopsy.csv --seg --patch --stitch
@@ -33,13 +34,14 @@ python create_patches_fp.py --source DATA_DIRECTORY --save_dir RESULTS_DIRECTORY
 CUDA_VISIBLE_DEVICES=0,1 python extract_features_fp.py --data_h5_dir DIR_TO_COORDS --data_slide_dir DATA_DIRECTORY --csv_path CSV_FILE_NAME --feat_dir FEATURES_DIRECTORY --batch_size 512 --slide_ext .svs
 ```
 
-
 ## Installation
+
 - Linux (Tested on Ubuntu 18.04)
 - NVIDIA GPU (Tested on a single Nvidia GeForce RTX 3090)
 - Python (3.7.11), h5py (2.10.0), opencv-python (4.1.2.30), PyTorch (1.10.1), torchvision (0.11.2), pytorch-lightning (1.5.10).
 
 Please refer to the following instructions.
+
 ```bash
 # create and activate the conda environment
 conda create -n transmil python=3.7 -y
@@ -47,9 +49,10 @@ conda activate transmil
 
 # install pytorch
 ## pip install
-pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu113
+pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 ## conda install
-conda install pytorch=1.11 torchvision cudatoolkit=11.3 -c pytorch
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
+
 # install related package
 pip install -r requirements.txt
 ```
@@ -67,8 +70,8 @@ python train.py --stage='test' --config='Camelyon/TransMIL.yaml'  --gpus=0 --fol
 ```
 
 ## Reference
-- If you found our work useful in your research, please consider citing our works(s) at:
 
+- If you found our work useful in your research, please consider citing our works(s) at:
 
 ```tex
 
@@ -83,4 +86,5 @@ python train.py --stage='test' --config='Camelyon/TransMIL.yaml'  --gpus=0 --fol
 
 
 ```
+
 © This code is made available under the GPLv3 License and is available for non-commercial academic purposes.
